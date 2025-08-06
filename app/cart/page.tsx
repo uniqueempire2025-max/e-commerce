@@ -8,7 +8,10 @@ export default function CartPage() {
   const { state, dispatch } = useStore()
 
   const subtotal = state.cart.reduce((total, item) => {
-    const itemPrice = item.product.price + (item.customization?.selectedFrame.price || 0)
+    const posterPrice = item.selectedSize ?
+      item.product.price * item.selectedSize.multiplier :
+      item.product.price
+    const itemPrice = posterPrice + (item.customization?.selectedFrame.price || 0)
     return total + (itemPrice * item.quantity)
   }, 0)
 
