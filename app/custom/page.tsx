@@ -4,23 +4,36 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import ImageUploader from '@/components/ImageUploader'
 import FrameSelector from '@/components/FrameSelector'
+import SizeSelector from '@/components/SizeSelector'
 import { useStore } from '@/contexts/StoreContext'
-import { Frame } from '@/types'
+import { Frame, PosterSize } from '@/types'
+import { posterSizes } from '@/data/products'
 
 export default function CustomPosterPage() {
   const [uploadedImage, setUploadedImage] = useState<string>('')
   const [selectedFrame, setSelectedFrame] = useState<Frame | null>(null)
-  const [step, setStep] = useState<'upload' | 'frame' | 'review'>('upload')
+  const [selectedSize, setSelectedSize] = useState<PosterSize>(posterSizes[0]) // Default to small
+  const [step, setStep] = useState<'upload' | 'size' | 'frame' | 'review'>('upload')
   const { dispatch } = useStore()
   const router = useRouter()
+
+  const basePrice = 24.99 // Base price for custom poster
 
   const handleImageUpload = (imageUrl: string) => {
     setUploadedImage(imageUrl)
     if (imageUrl) {
-      setStep('frame')
+      setStep('size')
     } else {
       setStep('upload')
     }
+  }
+
+  const handleSizeSelect = (size: PosterSize) => {
+    setSelectedSize(size)
+  }
+
+  const proceedToFrame = () => {
+    setStep('frame')
   }
 
   const handleFrameSelect = (frame: Frame) => {
@@ -40,7 +53,7 @@ export default function CustomPosterPage() {
     const customPoster = {
       id: `custom-${Date.now()}`,
       name: 'Custom Poster',
-      price: 39.99, // Base price for custom poster
+      price: basePrice,
       image: uploadedImage,
       category: 'poster' as const,
       description: 'Your custom uploaded poster',
@@ -52,6 +65,7 @@ export default function CustomPosterPage() {
       payload: {
         product: customPoster,
         quantity: 1,
+        selectedSize,
         customization: {
           uploadedImage,
           selectedFrame,
@@ -62,7 +76,8 @@ export default function CustomPosterPage() {
     router.push('/cart')
   }
 
-  const totalPrice = 39.99 + (selectedFrame?.price || 0)
+  const posterPrice = basePrice * selectedSize.multiplier
+  const totalPrice = posterPrice + (selectedFrame?.price || 0)
 
   return (
     <div className="container mx-auto px-4 py-8">
