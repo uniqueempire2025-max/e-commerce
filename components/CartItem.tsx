@@ -27,7 +27,10 @@ export default function CartItem({ item, index }: CartItemProps) {
     dispatch({ type: 'REMOVE_FROM_CART', payload: index.toString() })
   }
 
-  const itemTotal = item.product.price + (item.customization?.selectedFrame.price || 0)
+  const posterPrice = item.selectedSize ?
+    item.product.price * item.selectedSize.multiplier :
+    item.product.price
+  const itemTotal = posterPrice + (item.customization?.selectedFrame.price || 0)
   const totalPrice = itemTotal * item.quantity
 
   return (
