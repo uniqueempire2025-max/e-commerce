@@ -257,40 +257,36 @@ export default function CustomPosterPage() {
                   <div className="space-y-6">
                     <h3 className="text-lg font-semibold text-gray-800">Your Custom Poster</h3>
                     <div className="relative max-w-sm mx-auto">
-                      <div className="relative">
+                      <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+                        {/* Frame */}
                         {selectedFrame && (
                           <div
-                            className="absolute inset-0 pointer-events-none rounded-lg"
+                            className="absolute inset-0 pointer-events-none"
                             style={{
-                              background: `linear-gradient(to right, ${
+                              backgroundColor: selectedFrame.color.toLowerCase() === 'black' ? '#000' :
+                                selectedFrame.color.toLowerCase() === 'white' ? '#fff' :
+                                selectedFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
+                                selectedFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
+                                '#8b4513',
+                              padding: '24px',
+                              boxShadow: `inset 0 0 0 24px ${
                                 selectedFrame.color.toLowerCase() === 'black' ? '#000' :
                                 selectedFrame.color.toLowerCase() === 'white' ? '#fff' :
                                 selectedFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
                                 selectedFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
                                 '#8b4513'
-                              } 0%, ${
-                                selectedFrame.color.toLowerCase() === 'black' ? '#000' :
-                                selectedFrame.color.toLowerCase() === 'white' ? '#fff' :
-                                selectedFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
-                                selectedFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
-                                '#8b4513'
-                              } 20px, transparent 20px, transparent calc(100% - 20px), ${
-                                selectedFrame.color.toLowerCase() === 'black' ? '#000' :
-                                selectedFrame.color.toLowerCase() === 'white' ? '#fff' :
-                                selectedFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
-                                selectedFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
-                                '#8b4513'
-                              } calc(100% - 20px))`,
+                              }`
                             }}
                           />
                         )}
-                        
-                        <div className={`relative ${selectedFrame ? 'p-5' : ''} rounded-lg overflow-hidden`}>
-                          <div className="relative w-full h-80">
+
+                        {/* Image Container */}
+                        <div className={`relative ${selectedFrame ? 'p-6' : 'p-2'}`}>
+                          <div className="relative aspect-[4/5] bg-white rounded-lg overflow-hidden">
                             <img
                               src={uploadedImage}
                               alt="Your custom poster"
-                              className="w-full h-full object-contain rounded-lg"
+                              className="w-full h-full object-cover"
                             />
                           </div>
                         </div>
