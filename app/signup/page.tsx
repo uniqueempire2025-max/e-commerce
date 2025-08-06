@@ -78,7 +78,7 @@ export default function SignUpPage() {
             Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Join FrameArt and start creating beautiful posters
+            Join Unique and start creating beautiful posters
           </p>
         </div>
         
