@@ -41,7 +41,7 @@ export default function Header() {
                 </Link>
               </div>
             ) : (
-              <Link href="/login" className="text-gray-600 hover:text-rose-600 transition-colors font-medium">
+              <Link href="/signin" className="text-gray-600 hover:text-rose-600 transition-colors font-medium">
                 Sign In
               </Link>
             )}
