@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'FrameArt Store - Premium Posters & Custom Framing',
+  title: 'Unique Store - Premium Posters & Custom Framing',
   description: 'Create custom posters with frames or shop our curated collection of premium posters and frames',
 }
 
