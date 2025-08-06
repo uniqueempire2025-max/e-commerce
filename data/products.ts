@@ -25,11 +25,12 @@ export const posters: Product[] = [
   {
     id: 'poster-1',
     name: 'Abstract Geometric Art',
-    price: 29.99,
+    price: 24.99,
     image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500&h=600&fit=crop',
     category: 'poster',
     description: 'Modern abstract geometric artwork perfect for contemporary spaces.',
     inStock: true,
+    sizes: posterSizes,
   },
   {
     id: 'poster-2',
