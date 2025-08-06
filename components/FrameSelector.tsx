@@ -23,44 +23,38 @@ export default function FrameSelector({ selectedFrame, onFrameSelect, uploadedIm
         <div className="bg-gray-50 p-6 rounded-lg">
           <h4 className="text-lg font-medium mb-4">Preview with Frame</h4>
           <div className="relative max-w-md mx-auto">
-            <div className="relative">
-              {/* Frame overlay */}
+            <div className="relative bg-white rounded-2xl shadow-lg overflow-hidden">
+              {/* Frame */}
               {previewFrame && (
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: `linear-gradient(to right, ${
-                      previewFrame.color.toLowerCase() === 'black' ? '#000' :
+                    backgroundColor: previewFrame.color.toLowerCase() === 'black' ? '#000' :
                       previewFrame.color.toLowerCase() === 'white' ? '#fff' :
                       previewFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
                       previewFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
-                      '#8b4513' // natural wood
-                    } 0%, ${
-                      previewFrame.color.toLowerCase() === 'black' ? '#000' :
-                      previewFrame.color.toLowerCase() === 'white' ? '#fff' :
-                      previewFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
-                      previewFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
-                      '#8b4513'
-                    } 20px, transparent 20px, transparent calc(100% - 20px), ${
+                      '#8b4513',
+                    padding: '24px',
+                    boxShadow: `inset 0 0 0 24px ${
                       previewFrame.color.toLowerCase() === 'black' ? '#000' :
                       previewFrame.color.toLowerCase() === 'white' ? '#fff' :
                       previewFrame.color.toLowerCase() === 'gold' ? '#ffd700' :
                       previewFrame.color.toLowerCase() === 'silver' ? '#c0c0c0' :
                       '#8b4513'
-                    } calc(100% - 20px))`,
-                    backgroundSize: '100% 100%',
+                    }`
                   }}
                 />
               )}
-              
-              {/* Image */}
-              <div className={`relative ${previewFrame ? 'p-5' : ''}`}>
-                <div className="relative w-full h-80">
+
+              {/* Image Container */}
+              <div className={`relative ${previewFrame ? 'p-6' : 'p-2'}`}>
+                <div className="relative aspect-[4/5] bg-white rounded-lg overflow-hidden">
                   <Image
                     src={uploadedImage}
                     alt="Your custom poster"
                     fill
-                    className="object-contain"
+                    className="object-cover"
+                    sizes="(max-width: 400px) 100vw, 400px"
                   />
                 </div>
               </div>
