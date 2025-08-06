@@ -100,28 +100,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Frames */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-light text-gray-800 mb-4">
-              Premium Frames
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Complete your artwork with our selection of handcrafted frames
-            </p>
-          </div>
-          <ProductGrid products={featuredFrames} />
-          <div className="text-center mt-12">
-            <Link
-              href="/frames"
-              className="btn-secondary"
-            >
-              View All Frames
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
