@@ -16,7 +16,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-            FrameArt
+            Unique
           </Link>
 
           {/* Desktop Navigation */}
