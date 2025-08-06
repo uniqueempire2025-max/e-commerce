@@ -1,3 +1,10 @@
+export interface PosterSize {
+  id: string
+  name: string
+  dimensions: string
+  multiplier: number
+}
+
 export interface Product {
   id: string
   name: string
@@ -6,6 +13,7 @@ export interface Product {
   category: 'poster' | 'frame'
   description: string
   inStock: boolean
+  sizes?: PosterSize[]
 }
 
 export interface Frame {
