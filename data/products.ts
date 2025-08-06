@@ -1,4 +1,25 @@
-import { Product, Frame } from '@/types'
+import { Product, Frame, PosterSize } from '@/types'
+
+export const posterSizes: PosterSize[] = [
+  {
+    id: 'small',
+    name: 'Small',
+    dimensions: '30cm × 40cm',
+    multiplier: 1.0,
+  },
+  {
+    id: 'medium',
+    name: 'Medium',
+    dimensions: '50cm × 70cm',
+    multiplier: 1.5,
+  },
+  {
+    id: 'large',
+    name: 'Large',
+    dimensions: '70cm × 100cm',
+    multiplier: 2.2,
+  },
+]
 
 export const posters: Product[] = [
   {
