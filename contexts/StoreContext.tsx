@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useReducer, ReactNode } from 'react'
+import React, { createContext, useContext, useReducer, ReactNode, useMemo } from 'react'
 import { CartItem, Product, Frame, User } from '@/types'
 
 interface StoreState {
