@@ -10,7 +10,7 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (!state.isAuthenticated) {
-      router.push('/login')
+      router.push('/signin')
     }
   }, [state.isAuthenticated, router])
 
