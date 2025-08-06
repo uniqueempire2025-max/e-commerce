@@ -77,9 +77,6 @@ export default function Header() {
               <Link href="/posters" className="text-gray-600 hover:text-rose-600 font-medium">
                 Posters
               </Link>
-              <Link href="/frames" className="text-gray-600 hover:text-rose-600 font-medium">
-                Frames
-              </Link>
               <Link href="/custom" className="text-gray-600 hover:text-rose-600 font-medium">
                 Custom Poster
               </Link>
