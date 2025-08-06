@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import ProductGrid from '@/components/ProductGrid'
-import { posters, frameProducts } from '@/data/products'
+import { posters } from '@/data/products'
 
 export default function Home() {
-  const featuredPosters = posters.slice(0, 6)
-  const featuredFrames = frameProducts.slice(0, 4)
+  const featuredPosters = posters.slice(0, 8)
 
   return (
     <div>
