@@ -64,7 +64,7 @@ export default function SignInPage() {
             Welcome back
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Sign in to your FrameArt account
+            Sign in to your Unique account
           </p>
         </div>
         
