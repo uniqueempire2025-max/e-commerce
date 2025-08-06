@@ -30,6 +30,7 @@ export interface Frame {
 export interface CartItem {
   product: Product
   quantity: number
+  selectedSize?: PosterSize
   customization?: {
     uploadedImage: string
     selectedFrame: Frame
