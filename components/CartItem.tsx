@@ -49,17 +49,20 @@ export default function CartItem({ item, index }: CartItemProps) {
           {item.product.name}
         </h3>
         
-        {item.customization ? (
-          <div className="text-sm text-gray-600 space-y-1">
-            <p>✓ Custom uploaded image</p>
-            <p>✓ {item.customization.selectedFrame.name}</p>
-            <p className="text-xs">Frame: ${item.customization.selectedFrame.price.toFixed(2)}</p>
-          </div>
-        ) : (
-          <p className="text-sm text-gray-600 truncate">
-            {item.product.description}
-          </p>
-        )}
+        <div className="text-sm text-gray-600 space-y-1">
+          {item.selectedSize && (
+            <p>Size: {item.selectedSize.name} ({item.selectedSize.dimensions})</p>
+          )}
+          {item.customization ? (
+            <>
+              <p>✓ Custom uploaded image</p>
+              <p>✓ {item.customization.selectedFrame.name}</p>
+              <p className="text-xs">Frame: ${item.customization.selectedFrame.price.toFixed(2)}</p>
+            </>
+          ) : (
+            <p className="truncate">{item.product.description}</p>
+          )}
+        </div>
         
         <p className="text-lg font-semibold text-blue-600 mt-1">
           ${itemTotal.toFixed(2)} each
