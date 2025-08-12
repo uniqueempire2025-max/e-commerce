@@ -3,45 +3,46 @@ using PosterAdmin.Data;
 using PosterAdmin.Repositories;
 using PosterAdmin.Services;
 using PosterAdmin.Mappers;
+using PosterAdmin.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Database
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// AutoMapper
-builder.Services.AddAutoMapper(typeof(OrderMappingProfile));
-
-// Dependency Injection
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-
-// CORS
-builder.Services.AddCors(options =>
+builder.Services.AddSwaggerGen(c =>
 {
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
+    c.SwaggerDoc("v1", new() { 
+        Title = "Poster Admin API", 
+        Version = "v1",
+        Description = "API for managing poster orders and administration"
     });
 });
 
+// Add application services
+builder.Services.AddApplicationServices(builder.Configuration);
+
 var app = builder.Build();
+
+// Seed database
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await DataSeeder.SeedDataAsync(context);
+}
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Poster Admin API v1");
+        c.RoutePrefix = string.Empty; // Set Swagger UI at app's root
+    });
 }
 
+app.UseApplicationMiddleware(); // Global exception handling
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthorization();
